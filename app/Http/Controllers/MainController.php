@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Repositories\ActionRepository;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(ActionRepository $repository)
     {
-        $posts = [];
+        $posts = $repository->getPosts();
 
         return view('layouts.primary', [
             'page' => 'pages.index',
             'title' => 'Блог',
-            'name' => 'Яцко Юлия',
-            'content' => 'Привет, меня зовут Юля, я PHP разработчик.',
-            'image' => [
-                'path' => 'assets/images/me.jpg',
-                'alt' => 'Image'
-            ],
-            'imageMin' => 'assets/images/me90.jpg',
             'activeMenu' => 'main',
             'posts' => $posts
         ]);
@@ -30,13 +25,6 @@ class MainController extends Controller
         return view('layouts.primary', [
             'page' => 'pages.about',
             'title' => 'Обо мне',
-            'name' => 'Яцко Юлия',
-            'content' => 'Привет, меня зовут Юля, я PHP разработчик.',
-            'image' => [
-                'path' => 'assets/images/me.jpg',
-                'alt' => 'Image'
-            ],
-            'imageMin' => 'assets/images/me90.jpg',
             'activeMenu' => 'about',
         ]);
 
@@ -47,13 +35,6 @@ class MainController extends Controller
         return view('layouts.primary', [
             'page' => 'pages.feedback',
             'title' => 'Обратная связь',
-            'name' => 'Яцко Юлия',
-            'content' => 'Привет, меня зовут Юля, я PHP разработчик.',
-            'image' => [
-                'path' => 'assets/images/me.jpg',
-                'alt' => 'Image'
-            ],
-            'imageMin' => 'assets/images/me90.jpg',
             'activeMenu' => 'feedback',
         ]);
     }

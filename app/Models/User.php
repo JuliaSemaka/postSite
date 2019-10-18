@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Profile');
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }

@@ -97,15 +97,15 @@
                                                                                 <label class="col-sm-4 control-label">Мобильный
                                                                                     телефон</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text"
+                                                                                    <input type="tel"
                                                                                            class="form-control"
                                                                                            id="register_phone"
                                                                                            name="phone"
-                                                                                           placeholder="+79991234567"
+                                                                                           placeholder="+375 (44) 123-45-67"
                                                                                            value="{{ old('phone') }}">
-                                                                                    @if ($errors->has('phone'))
-                                                                                        <span class="error-message">{{ $errors->first('phone') }}</span>
-                                                                                    @endif
+                                                                                    @error('phone')
+                                                                                        <span class="error-message">{{ $message }}</span>
+                                                                                    @enderror
                                                                                 </div>
                                                                             </div>
 
@@ -121,12 +121,12 @@
                                                                                                        class="form-control"
                                                                                                        id="register_birthday"
                                                                                                        name="birthday"
-                                                                                                       value="{{ old('birthday') ?? '1993-06-01'}}"
+                                                                                                       value="{{ old('birthday')}}"
                                                                                                        min="1920-01-01"
                                                                                                        max="2014-12-31">
-                                                                                                @if ($errors->has('birthday'))
-                                                                                                    <span class="error-message">{{ $errors->first('birthday') }}</span>
-                                                                                                @endif
+                                                                                                @error('birthday')
+                                                                                                <span class="error-message">{{ $message }}</span>
+                                                                                                @enderror
                                                                                             </div>
                                                                                         </div>
 

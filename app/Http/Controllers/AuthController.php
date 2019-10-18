@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +23,7 @@ class AuthController extends Controller
 
     public function registerPost(RegisterRequest $request)
     {
-//        $this->validate($request, [
+//        $request->validate([
 //            'name' => 'required|min:2|max:20',
 //            'email' => 'required|email|unique:users',
 //            'password' => 'required|max:255|min:6',
@@ -31,11 +33,20 @@ class AuthController extends Controller
 //            'is_confirmed' => 'accepted'
 //        ]);
 
-        DB::table('users')->insert([
+        $request->validated();
+
+        $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'phone' => $request->input('phone')
+            'password' => bcrypt($request->input('password'))
+        ]);
+
+//        dump($user->id);
+//        return 'ok';
+        $user->profile()->create([
+            'user_id' => $user->id,
+            'phone' => $request->input('phone'),
+            'birthday' => $request->input('birthday')
         ]);
 
         return redirect()->route('main.index');
@@ -57,16 +68,30 @@ class AuthController extends Controller
 //        dump($dbDate);
 //        return 'OK';
 
-        $email = $request->input('email');
-        $pass = $request->input('password');
+//        $email = $request->input('email');
+//        $pass = $request->input('password');
+//
+//        if(Auth::attempt(['email' => $email, 'password' => $pass])){
+//            return redirect()->route('home');
+//        }else{
+//            dump('oshibka');
+//
+//        }
 
-        if(Auth::attempt(['email' => $email, 'password' => $pass])){
+        $remember = $request->input('remember') ? true : null;
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials, $remember)) {
+            // Authentication passed...
             return redirect()->route('main.index');
         }
+        return redirect()->route('auth.login')->withInput();
     }
 
     public function logout()
     {
+        Auth::logout();
 
+        return redirect()->route('main.index');
     }
 }

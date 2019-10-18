@@ -16,13 +16,19 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">Адрес e-mail</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" placeholder="Адрес e-mail, указанный при регистрации" name="email">
+                        <input type="text" class="form-control" placeholder="Адрес e-mail, указанный при регистрации" name="email" value="{{ old('email') }}">
+                        @error('email')
+                        <span class="error-message">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-3 control-label">Пароль</label>
                     <div class="col-sm-9">
                         <input type="password" class="form-control" placeholder="Ваш пароль" name="password">
+                        @error('password')
+                        <span class="error-message">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group">

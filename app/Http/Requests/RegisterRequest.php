@@ -28,8 +28,8 @@ class RegisterRequest extends FormRequest
             'email' => 'required|email|unique:users',
             'password' => 'required|max:255|min:6',
             'password_confirmation' => 'required|same:password',
-//            'phone' => '/regex:/\+\d{1}\s{1}\(\d{3}\)\s{1}\d{3}\-\d{2}\-\d{2}/',
-//            'phone' => 'number|min:10|max:15',
+            'phone' => 'regex:/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){3,14}(\s*)?$/',
+            'birthday' => 'required|date',
             'is_confirmed' => 'accepted'
         ];
     }

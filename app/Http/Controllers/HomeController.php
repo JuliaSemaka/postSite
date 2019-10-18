@@ -15,8 +15,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 //        $request->session()->put('key', 'value');
-        Auth::user(); //возвращает авторизованного пользователя
-        $request->session()->flash('status', 'Task was successful!');
+        dump(Auth::viaRemember(), Auth::user(), Auth::id(), $request->user()); //возвращает авторизованного пользователя
+//        $request->session()->flash('status', 'Task was successful!');
 
         return 'ok';
     }

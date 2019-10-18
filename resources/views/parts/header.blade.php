@@ -26,15 +26,20 @@
                         <a href="{{ route('main.feedback') }}" class="dropdown-toggle" data-toggle="dropdown">Написать
                             мне</a>
                     </li>
-                    <li class="register">
-                        <a href="{{ route('auth.register') }}" class="dropdown-toggle" data-toggle="dropdown">Регистрация</a>
-                    </li>
-
                     @if( Auth::check() )
                         <li class="login">
-                            Вошли как {{ Auth::user()->name }}<a href="{{ route('auth.logout') }}">Выход</a>
+                            <a href="{{ route('home') }}">{{ Auth::user()->name }}</a>
+                        </li>
+                        <li class="login">
+                            <a href="{{ route('posts.create') }}">Создать статью</a>
+                        </li>
+                        <li class="login">
+                            <a href="{{ route('auth.logout') }}">Выход</a>
                         </li>
                     @else
+                        <li class="register">
+                            <a href="{{ route('auth.register') }}" class="dropdown-toggle" data-toggle="dropdown">Регистрация</a>
+                        </li>
                         <li class="login">
                             <a href="{{ route('auth.login') }}" class="dropdown-toggle"
                                data-toggle="dropdown">Вход</a>
@@ -45,8 +50,8 @@
             </div>
         </nav>
         <div class="hidden-xs hidden-sm">
-            <a href="#" class="search__container  js--toggle-search-mode"> <span
-                        class="glyphicon  glyphicon-search"></span> </a>
+                    <a href="#" class="search__container  js--toggle-search-mode"> <span
+                                class="glyphicon  glyphicon-search"></span> </a>
         </div>
     </div>
 </header>
