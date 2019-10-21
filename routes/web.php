@@ -17,6 +17,8 @@ Route::name('main.')->group(function () {
         ->name('about');
     Route::get('/feedback', 'MainController@feedback')
         ->name('feedback');
+    Route::post('/feedback', 'MainController@feedbackPost')
+        ->name('feedbackPost');
     Route::get('/db', 'MainController@db')
         ->name('db');
 });

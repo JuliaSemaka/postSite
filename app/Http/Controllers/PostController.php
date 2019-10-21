@@ -36,6 +36,8 @@ class PostController extends Controller
 
     public function create()
     {
+        $this->authorize('create');
+
         return view('layouts.primary', [
             'page' => 'pages.create',
             'title' => 'Создание нового поста',
@@ -58,9 +60,9 @@ class PostController extends Controller
 //        return redirect()->route('site.main.index');
 //        dump(Post::find(1)->title);
         Post::create([
-                'title' => 'tit',
-                'slug' => 'title',
-                'tagline' =>'tit',
+                'title' => $this->request->input('title'),
+                'slug' => Str::slug($this->request->input('title'), '-'),
+                'tagline' => $this->request->input('tagline'),
             ]);
 
         return 'ok';

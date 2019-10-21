@@ -19,11 +19,11 @@ Route::name('posts.')->group(function (){
 
     Route::get('/create', 'PostController@create')
         ->name('create')
-        ->middleware('auth');
+        ->middleware('can:create,App\Models\Post');
 
     Route::post('/create', 'PostController@createPost')
         ->name('createPost')
-        ->middleware('auth');
+        ->middleware('can:create,App\Models\Post');
 
     Route::delete('/delete/{id}', 'PostController@delete')
         ->name('delete')

@@ -30,10 +30,7 @@
                         <li class="login">
                             <a href="{{ route('home') }}">{{ Auth::user()->name }}</a>
                         </li>
-                        <li class="login">
-                            <a href="{{ route('posts.create') }}">Создать статью</a>
-                        </li>
-                        <li class="login">
+                        <li class="logout">
                             <a href="{{ route('auth.logout') }}">Выход</a>
                         </li>
                     @else

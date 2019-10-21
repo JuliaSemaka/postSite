@@ -15,6 +15,12 @@
                 <a href="{{ route('posts.byUser', ['id' => Auth::id()]) }}"
                    class="tags__link">Мои статьи</a>
                 {{--            <p>{{ $aboutMe['content'] ?? ''}}</p>--}}
+
+            </div>
+            <div class="col-xs-10  col-xs-offset-1">
+                @can('create', \App\Models\Post::class)
+                    <a href="{{ route('posts.create') }}" class="tags__link">Создать статью</a>
+                @endcan
             </div>
         </div>
     </div>

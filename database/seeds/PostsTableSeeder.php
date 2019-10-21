@@ -22,14 +22,14 @@ class PostsTableSeeder extends Seeder
                 'tagline' => $faker->realText(30),
                 'image' => $faker->imageUrl(1280,720),
 //                'image' => 'https://imgholder.ru/1280x720/0082d5/eceff4&text=Test%20text&font=kelson',
-                'slug' => sha1('1234567890'),
+                'slug' => 'Laravel 6 Framework',
                 'announce' => $faker->realText(300),
                 'fulltext' => $faker->realText(1024),
                 'active_from' => Carbon::now(),
                 'views_count' => mt_rand(0,100),
             ]);
 
-//            $postModel->slug = $postModel->id . ':' . str_slug($postModel->title, '-');
+            $postModel->slug = $postModel->id . ':' . Str::slug($postModel->title, '-');
             $postModel->save();
         }
 
